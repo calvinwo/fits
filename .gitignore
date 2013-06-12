@@ -1,5 +1,1 @@
-/build_local
-*.class
-/fitsBasicTestOutput.xml
-CVS
-TAGS
+/target
