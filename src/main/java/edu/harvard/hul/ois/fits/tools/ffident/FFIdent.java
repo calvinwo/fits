@@ -17,6 +17,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +46,16 @@ public class FFIdent extends ToolBase
         info = new ToolInfo("ffident", "0.2", "2005-10-21");
         try
         {
-            File config = new File(Fits.FITS_TOOLS + "ffident/formats.txt");
+            URL url = this.getClass().getResource(Fits.FITS_TOOLS + "ffident/formats.txt");
+            File config = new File(url.toURI());
             identifier = new FormatIdentification(config.getPath());
         }
         catch (FileNotFoundException e)
+        {
+            throw new FitsToolException(Fits.FITS_TOOLS + "ffident/formats.txt could not be found",
+                    e);
+        }
+        catch (URISyntaxException e)
         {
             throw new FitsToolException(Fits.FITS_TOOLS + "ffident/formats.txt could not be found",
                     e);

@@ -51,16 +51,17 @@ public class ADLTool extends ToolBase
         log.debug("Exiting ADLTool()");
     }
 
-    public ToolOutput extractInfo(File file) throws FitsToolException {	
-	    log.debug("Entering extractInfo(file={})", file);
-		long startTime = System.currentTimeMillis();
-		Document doc = createXml(file);
-		output = new ToolOutput(this,(Document)doc.clone(),doc);
-		duration = System.currentTimeMillis()-startTime;
-		runStatus = RunStatus.SUCCESSFUL;
-		log.debug("Exiting extractInfo(): {}", output);
-		return output;
-	}
+    public ToolOutput extractInfo (File file) throws FitsToolException
+    {
+        log.debug("Entering extractInfo(file={})", file);
+        long startTime = System.currentTimeMillis();
+        Document doc = createXml(file);
+        output = new ToolOutput(this, (Document) doc.clone(), doc);
+        duration = System.currentTimeMillis() - startTime;
+        runStatus = RunStatus.SUCCESSFUL;
+        log.debug("Exiting extractInfo(): {}", output);
+        return output;
+    }
 
     private Document createXml (File file) throws FitsToolException
     {

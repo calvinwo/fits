@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -57,7 +59,9 @@ public class Jhove extends ToolBase
         {
             log.debug("Entering Jhove()");
             // Initialize Jhove
-            File config = new File(Fits.FITS_XML + "jhove" + File.separator + "jhove.conf");
+            URL url = this.getClass().getResource(Fits.FITS_XML + "jhove" + File.separator + "jhove.conf");
+            File config = new File(url.toURI());
+            //new File(Fits.FITS_XML + "jhove" + File.separator + "jhove.conf");
             // = new File((this.getClass().getResource("jhove.conf")).toURI());
             jhoveConf = config.getPath();
             jhove = new JhoveBase();
@@ -71,6 +75,10 @@ public class Jhove extends ToolBase
             xh.setBase(jhove);
         }
         catch (JhoveException e)
+        {
+            throw new FitsToolException("Error initializing Jhove", e);
+        }
+        catch (URISyntaxException e)
         {
             throw new FitsToolException("Error initializing Jhove", e);
         }

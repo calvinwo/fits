@@ -36,7 +36,7 @@ public class Droid extends ToolBase
 {
     private uk.gov.nationalarchives.droid.Droid droid   = null;
     public final static String                  xslt    = Fits.FITS_HOME
-                                                                + "src/main/resources/xml/droid/droid_to_fits.xslt";
+                                                                + "/xml/droid/droid_to_fits.xslt";
     private boolean                             enabled = true;
     private final static Logger                 log     = LoggerFactory
                                                                 .getLogger("edu.harvard.hul.ois.fits.tools.droid");
@@ -48,9 +48,14 @@ public class Droid extends ToolBase
         try
         {
             String droid_conf = Fits.FITS_TOOLS + "droid" + File.separator;
-            URL droidConfig = new File(droid_conf + "DROID_config.xml").toURI().toURL();
-            URL sigFile = new File(droid_conf + Fits.config.getString("droid_sigfile")).toURI()
-                    .toURL();
+            URL url = this.getClass().getResource(
+                    droid_conf + Fits.config.getString("droid_sigfile"));
+            URL droidConfig = this.getClass().getResource(droid_conf + "DROID_config.xml");
+            // new File(droid_conf + "DROID_config.xml").toURI().toURL();
+            URL sigFile = this.getClass().getResource(
+                    droid_conf + Fits.config.getString("droid_sigfile"));
+            // new File(droid_conf +
+            // Fits.config.getString("droid_sigfile")).toURI().toURL();
             // The Droid(URL configFile, URL sigFileURL) constructor is broken
             // So create droid instance and read signature file manually.
             droid = new uk.gov.nationalarchives.droid.Droid(droidConfig);

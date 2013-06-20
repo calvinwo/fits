@@ -38,8 +38,6 @@ import org.jhove2.persist.PersistenceManagerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ch.qos.logback.classic.Level;
-
 import edu.harvard.hul.ois.fits.Fits;
 import edu.harvard.hul.ois.fits.exceptions.FitsException;
 import edu.harvard.hul.ois.fits.exceptions.FitsToolException;
@@ -91,23 +89,16 @@ public class Jhove2 extends ToolBase
                     .getInstance();
             persistenceManager.initialize();
             this.formatMap = configInfo.getFormatAliasIdsToJ2Ids(I8R.Namespace.PUID);
-            if (log.isTraceEnabled())
-            {
-                printFormatMap_();
-            }
             this.j2 = SpringConfigInfo.getReportable(JHOVE2.class, JHOVE2_CLASS);
         }
         catch (JHOVE2Exception e)
         {
+            e.printStackTrace();
             throw new FitsToolException("Error initializing " + JHOVE2_NAME, e);
         }
         // Initialize tool info and transform map.
-        this.info = new ToolInfo(JHOVE2_NAME, this.j2.getVersion(), this.j2.getReleaseDate());
-        this.transformMap = XsltTransformMap.getMap(j2FitsConfig + JHOVE2_XSLT_MAP);
-        if (log.isTraceEnabled())
-        {
-            printTransformMap_();
-        }
+        info = new ToolInfo(JHOVE2_NAME, this.j2.getVersion(), this.j2.getReleaseDate());
+        transformMap = XsltTransformMap.getMap(j2FitsConfig + JHOVE2_XSLT_MAP);
         log.debug("Exiting Jhove2()");
     }
 
@@ -220,7 +211,6 @@ public class Jhove2 extends ToolBase
             // try {
             // outputter2.output(fitsDocument, System.out);
             // } catch (IOException e) {
-            // // TODO Auto-generated catch block
             // e.printStackTrace();
             // }
             // TODO REMOVE DEBUG OUTPUT!!
@@ -290,21 +280,5 @@ public class Jhove2 extends ToolBase
     public void setEnabled (boolean value)
     {
         this.enabled = value;
-    }
-
-    private void printFormatMap_ ()
-    {
-        for (String s : this.formatMap.keySet())
-        {
-            // log.trace("\t" + s + " = " + this.formatMap.get(s));
-        }
-    }
-
-    private void printTransformMap_ ()
-    {
-        for (Object o : this.transformMap.keySet())
-        {
-            // log.trace("\t" + (String) o + " = " + this.transformMap.get(o));
-        }
     }
 }

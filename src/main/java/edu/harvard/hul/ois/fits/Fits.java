@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -81,7 +82,8 @@ public class Fits
     private static XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newInstance();
     private ToolBelt                toolbelt;
     private static boolean          traverseDirs;
-    private final static Logger log = (Logger) LoggerFactory.getLogger("edu.harvard.hul.ois.fits");
+    private final static Logger     log              = (Logger) LoggerFactory
+                                                             .getLogger("edu.harvard.hul.ois.fits");
 
     public Fits () throws FitsException
     {
@@ -95,7 +97,7 @@ public class Fits
     public Fits (String fits_home) throws FitsConfigurationException
     {
         log.setLevel(Level.OFF);
-        log.debug("Entering Fits(fits_home={})", fits_home);
+        log.debug("Entering Fits(fits_home={})", fits_home); 
         // Set BB_HOME dir with environment variable
         FITS_HOME = System.getenv("FITS_HOME");
         if (FITS_HOME == null)
@@ -118,13 +120,15 @@ public class Fits
         {
             FITS_HOME = FITS_HOME + File.separator;
         }
-        FITS_XML = FITS_HOME + "src" + File.separator + "main" + File.separator + "resources"
-                + File.separator + "xml" + File.separator;
-        FITS_TOOLS = FITS_HOME + "src" + File.separator + "main" + File.separator + "resources"
-                + File.separator + "tools" + File.separator;
+        FITS_XML = FITS_HOME +//"src" + File.separator + "main" + File.separator + "resources" +
+                 File.separator + "xml" + File.separator;
+        FITS_TOOLS = FITS_HOME + //src" + File.separator + "main" + File.separator + "resources" +
+                 File.separator + "tools" + File.separator;
         try
         {
-            config = new XMLConfiguration(FITS_XML + "fits.xml");
+            URL url = this.getClass().getResource(FITS_XML + "fits.xml");
+            
+            config = new XMLConfiguration(url);
         }
         catch (ConfigurationException e)
         {
@@ -404,7 +408,7 @@ public class Fits
     public static void outputStandardSchemaXml (FitsOutput fitsOutput, OutputStream out)
             throws XMLStreamException, IOException
     {
-        log.debug("Entering outputStandardSchemaXml(fitsOutput={}, out={}",fitsOutput, out);
+        log.debug("Entering outputStandardSchemaXml(fitsOutput={}, out={}", fitsOutput, out);
         XmlContent xml = fitsOutput.getStandardXmlContent();
         // create an xml output factory
         Transformer transformer = null;

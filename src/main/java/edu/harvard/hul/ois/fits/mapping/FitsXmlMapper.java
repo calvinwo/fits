@@ -13,6 +13,7 @@
 package edu.harvard.hul.ois.fits.mapping;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,8 @@ public class FitsXmlMapper
     {
         log.debug("Entering FitsXmlMapper()");
         SAXBuilder saxBuilder = new SAXBuilder();
-        Document doc = saxBuilder.build(FITS_XML_MAP_PATH);
+        URL url = this.getClass().getResource(FITS_XML_MAP_PATH);
+        Document doc = saxBuilder.build(url);
         List<Element> tElements = doc.getRootElement().getChildren("tool");
         for (Element tElement : tElements)
         {

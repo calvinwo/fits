@@ -13,6 +13,7 @@
 package edu.harvard.hul.ois.fits.tools;
 
 import java.io.PrintStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.apache.commons.configuration.XMLConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.harvard.hul.ois.fits.Fits;
 import edu.harvard.hul.ois.fits.exceptions.FitsConfigurationException;
 
 public class ToolBelt
@@ -34,7 +36,8 @@ public class ToolBelt
         XMLConfiguration config = null;
         try
         {
-            config = new XMLConfiguration(configFile);
+            URL url = this.getClass().getResource(configFile);
+            config = new XMLConfiguration(url);
         }
         catch (ConfigurationException e)
         {

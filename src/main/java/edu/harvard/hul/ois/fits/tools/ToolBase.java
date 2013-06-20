@@ -13,6 +13,7 @@
 package edu.harvard.hul.ois.fits.tools;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -113,14 +114,16 @@ public abstract class ToolBase implements Tool
 
     public Document transform (String xslt, Document input) throws FitsToolException
     {
-        log.debug("Entering transform(xslt={}, input={}", xslt,input);
+        log.debug("Entering transform(xslt={}, input={}", xslt, input);
         Document doc = null;
         try
         {
             Configuration config = ((TransformerFactoryImpl) tFactory).getConfiguration();
             DocumentWrapper docw = new DocumentWrapper(input, null, config);
             JDOMResult out = new JDOMResult();
-            Templates templates = tFactory.newTemplates(new StreamSource(xslt));
+            InputStream is = this.getClass().getResourceAsStream(xslt);
+            Templates templates = tFactory.newTemplates(new StreamSource(is));
+            is.close();
             Transformer transformer = templates.newTransformer();
             transformer.transform(docw, out);
             doc = out.getDocument();

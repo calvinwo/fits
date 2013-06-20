@@ -3,7 +3,7 @@
 <meta-config>
 	<harvester>
 		<title name="NLNZ Metadata Extractor v3.0" />
-		<xml-location url="src/main/resources/xml/nlnz" />
+		<xml-location url="xml/nlnz" />
 		<jar-location url="METADATA_BASE/installed-adapters" />
 		<input-files dir="METADATA_BASE" />
 		<log-dir dir="logs" />

@@ -12,6 +12,8 @@
  */
 package edu.harvard.hul.ois.fits.consolidation;
 
+import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,10 +28,11 @@ import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import ch.qos.logback.classic.Logger;
 
 import edu.harvard.hul.ois.fits.Fits;
 import edu.harvard.hul.ois.fits.FitsOutput;
@@ -59,7 +62,7 @@ public class OISConsolidator implements ToolOutputConsolidator
                                                                  Arrays.asList("linebreak"));                                          ;
     private final static Namespace    fitsNS             = Namespace
                                                                  .getNamespace(Fits.XML_NAMESPACE);
-    private final static Logger       log                = (Logger) LoggerFactory
+    private final static Logger       log                = LoggerFactory
                                                                  .getLogger("edu.harvard.hul.ois.fits.consolidation.OISConsolidator");
 
     public OISConsolidator () throws FitsConfigurationException
@@ -70,7 +73,8 @@ public class OISConsolidator implements ToolOutputConsolidator
         SAXBuilder saxBuilder = new SAXBuilder();
         try
         {
-            formatTree = saxBuilder.build(Fits.FITS_XML + "fits_format_tree.xml");
+            URL url = this.getClass().getResource(Fits.FITS_XML + "fits_format_tree.xml");
+            formatTree = saxBuilder.build(url);
         }
         catch (Exception e)
         {

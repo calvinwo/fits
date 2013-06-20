@@ -16,6 +16,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.URL;
 
 import org.jdom.Document;
 import org.jdom.JDOMException;
@@ -60,7 +61,8 @@ public class MetadataExtractor extends ToolBase
         // Document rawDom = null;
         // Make sure the Harvester System is initialized.
         // Config.getInstance();
-        Config.getInstance().setXMLBaseURL(Fits.FITS_XML + "nlnz");
+        URL url = this.getClass().getResource(Fits.FITS_XML + "nlnz" + file.separator);
+        Config.getInstance().setXMLBaseURL(url.toString());
         // Get the appropriate adapter.
         DataAdapter adapter = AdapterFactory.getInstance().getAdapter(file);
         // The adapter's DTD to use for output

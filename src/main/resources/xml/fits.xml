@@ -7,7 +7,7 @@
  		<tool class="edu.harvard.hul.ois.fits.tools.jhove2.Jhove2" exclude-exts="dng,mbx" />
  		<tool class="edu.harvard.hul.ois.fits.tools.oisfileinfo.AudioInfo" include-exts="wav"/>
 		<tool class="edu.harvard.hul.ois.fits.tools.oisfileinfo.ADLTool" include-exts="adl"/>
-		<tool class="edu.harvard.hul.ois.fits.tools.jhove.Jhove" exclude-exts="dng,mbx,arw,adl,eml" />   
+		<tool class="edu.harvard.hul.ois.fits.tools.jhove.Jhove" exclude-exts="dng,mbx,arw,adl,eml" />  
 	 	<tool class="edu.harvard.hul.ois.fits.tools.fileutility.FileUtility" exclude-exts="dng,wps,adl"/>	 	 
 	 	<tool class="edu.harvard.hul.ois.fits.tools.exiftool.Exiftool" exclude-exts="txt,wps,vsd"/>
 	 	<tool class="edu.harvard.hul.ois.fits.tools.droid.Droid"  exclude-exts="dng"/>
