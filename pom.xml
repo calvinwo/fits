@@ -5,22 +5,11 @@
 	<artifactId>fits</artifactId>
 	<version>0.6.2</version>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<testSourceDirectory>tests</testSourceDirectory>
-		<resources>
-			<resource>
-				<directory>src</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-			<resource>
-				<directory>xml/nlnz</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-		</resources>
+		<!-- <sourceDirectory>src</sourceDirectory> -->
+		<!-- <testSourceDirectory>tests</testSourceDirectory> -->
+		<!-- <resources> <resource> <directory>src</directory> <excludes> <exclude>**/*.java</exclude> 
+			</excludes> </resource> <resource> <directory>xml/nlnz</directory> <excludes> 
+			<exclude>**/*.java</exclude> </excludes> </resource> </resources> -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -51,71 +40,9 @@
 		</repository>
 	</repositories>
 	<dependencies>
-		<dependency>
-			<groupId>org.jwat</groupId>
-			<artifactId>jwat-common</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jwat</groupId>
-			<artifactId>jwat-arc</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jwat</groupId>
-			<artifactId>jwat-gzip</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jwat</groupId>
-			<artifactId>jwat-warc</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mvel</groupId>
-			<artifactId>mvel2</artifactId>
-			<version>2.0.18</version>
-		</dependency>
-		<dependency>
-		  <groupId>org.apache</groupId>
-		  <artifactId>commons-configuration</artifactId>
-		  <version>1.5</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-cli</groupId>
-			<artifactId>commons-cli</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.6</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>soap</groupId>
-			<artifactId>soap</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>jdom</groupId>
-			<artifactId>jdom</artifactId>
-			<version>1.0</version>
-		</dependency>
+
+		<!-- These dependencies are unsorted -->
+
 		<dependency>
 			<groupId>com.therockquarry</groupId>
 			<artifactId>AES31</artifactId>
@@ -131,51 +58,12 @@
 			<artifactId>fast-md5</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>edu.harvard.hcl</groupId>
-			<artifactId>hclaps</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jaxen</groupId>
-			<artifactId>jaxen-core</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jaxen</groupId>
-			<artifactId>jaxen-jdom</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.harvard.hul.ois</groupId>
-			<artifactId>ots</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.saxon</groupId>
-			<artifactId>saxon9-dom</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.saxon</groupId>
-			<artifactId>saxon9-jdom</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.saxon</groupId>
-			<artifactId>saxon9</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.saxpath</groupId>
-			<artifactId>saxpath</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.xml</groupId>
-			<artifactId>serializer</artifactId>
-			<version>1.0</version>
-		</dependency>
+		<!-- <dependency> <groupId>net.sf.saxon</groupId> <artifactId>saxon9-dom</artifactId> 
+			<version>1.0</version> </dependency> <dependency> <groupId>net.sf.saxon</groupId> 
+			<artifactId>saxon9-jdom</artifactId> <version>1.0</version> </dependency> 
+			<dependency> <groupId>net.sf.saxon</groupId> <artifactId>saxon9</artifactId> 
+			<version>1.0</version> </dependency> -->
+
 		<dependency>
 			<groupId>org.codehaus</groupId>
 			<artifactId>stax2-api</artifactId>
@@ -185,11 +73,6 @@
 			<groupId>org.codehaus</groupId>
 			<artifactId>staxmate</artifactId>
 			<version>2.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache</groupId>
-			<artifactId>tika-app</artifactId>
-			<version>1.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ctc</groupId>
@@ -209,11 +92,6 @@
 		<dependency>
 			<groupId>com.lowagie</groupId>
 			<artifactId>AllLibraries</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>uk.gov.nationalarchives</groupId>
-			<artifactId>droid</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
@@ -242,16 +120,6 @@
 			<version>1.2.2</version>
 		</dependency>
 		<dependency>
-			<groupId>com.sun</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
 			<groupId>javax.xml</groupId>
 			<artifactId>xml-apis</artifactId>
 			<version>1.0</version>
@@ -277,119 +145,237 @@
 			<version>1.0</version>
 		</dependency>
 		<dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcmail-jdk14</artifactId>
-            <version>132</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk14</artifactId>
-            <version>132</version>
-        </dependency>
-        <dependency>
-            <groupId>blowfishj</groupId>
-            <artifactId>bfj</artifactId>
-            <version>220</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib</groupId>
-            <artifactId>metadata</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.pdfbox</groupId>
-            <artifactId>PDFBox</artifactId>
-            <version>0.7.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache</groupId>
-            <artifactId>poi</artifactId>
-            <version>2.5.1-final-20040804</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>bmp_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>excel_adapter</artifactId>
-            <version>1.0</version>
-        </dependency><dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>gif_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>html_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>jpg_adapter</artifactId>
-            <version>1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>mp3_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>msword_adapter</artifactId>
-            <version>2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>msworks_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>openoffice_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>pdf_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>pdfbox_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>powerpoint_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>tiff_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>wave_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>wordperfect_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>nz.gov.natlib.adapter</groupId>
-            <artifactId>xml_adapter</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-        	<groupId>junit</groupId>
-        	<artifactId>junit</artifactId>
-        	<version>4.10</version>
-        	<scope>test</scope>
-        </dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcmail-jdk14</artifactId>
+			<version>132</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk14</artifactId>
+			<version>132</version>
+		</dependency>
+		<dependency>
+			<groupId>blowfishj</groupId>
+			<artifactId>bfj</artifactId>
+			<version>220</version>
+		</dependency>
+
+		<!-- These dependencies *are* contained within this project -->
+
+		<!-- reason: old version of droid, not in central -->
+		<dependency>
+			<groupId>uk.gov.nationalarchives</groupId>
+			<artifactId>droid</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- reason: not in central -->
+		
+		<!-- Harvard -->
+		
+		<dependency>
+			<groupId>edu.harvard.hcl</groupId>
+			<artifactId>hclaps</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.harvard.hul.ois</groupId>
+			<artifactId>ots</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		<!-- NZ -->
+		
+		<dependency>
+			<groupId>nz.gov.natlib</groupId>
+			<artifactId>metadata</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>bmp_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>excel_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>gif_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>html_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>jpg_adapter</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>mp3_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>msword_adapter</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>msworks_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>openoffice_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>pdf_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>pdfbox_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>powerpoint_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>tiff_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>wave_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>wordperfect_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.gov.natlib.adapter</groupId>
+			<artifactId>xml_adapter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+
+		<!-- These dependencies are not contained within this project -->
+
+		<dependency>
+			<groupId>org.mvel</groupId>
+			<artifactId>mvel2</artifactId>
+			<version>2.0.18</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jwat</groupId>
+			<artifactId>jwat-common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jwat</groupId>
+			<artifactId>jwat-arc</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jwat</groupId>
+			<artifactId>jwat-gzip</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jwat</groupId>
+			<artifactId>jwat-warc</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-cli</groupId>
+			<artifactId>commons-cli</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>soap</groupId>
+			<artifactId>soap</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.saxon</groupId>
+			<artifactId>saxon</artifactId>
+			<version>9.1.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.3.2</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>serializer</artifactId>
+			<version>2.7.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>2.5.1-final-20040804</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>0.7.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.5</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>tika-app</artifactId>
+			<version>1.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
