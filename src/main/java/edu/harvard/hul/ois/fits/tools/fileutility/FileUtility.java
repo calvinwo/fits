@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 
@@ -46,9 +48,12 @@ public class FileUtility extends ToolBase {
 	private final static String WIN_FILE_DATE = "6/7/2008";
 	private boolean enabled = true;
 	
+    private static final Logger logger = Logger.getLogger(FileUtility.class);
+
 	public final static String xslt = Fits.FITS_XML+"fileutility/fileutility_to_fits.xslt";
 
 	public FileUtility() throws FitsToolException{	
+        logger.debug ("Initializing FileUtility");
 		String osName = System.getProperty("os.name");
 		info = new ToolInfo();
 		String versionOutput = null;
@@ -60,15 +65,19 @@ public class FileUtility extends ToolBase {
 			info.setDate(WIN_FILE_DATE);
 			// FIXME: copy exe to temp dir before execution!
 			infoCommand.addAll(WIN_COMMAND);
+	        logger.debug("FileUtility will use Windows environment");
+
 		}
 		else if (testOSForCommand()){
 			osHasTool = true;	
 			//use file command in operating system			
 			infoCommand.addAll(UNIX_COMMAND);
+            logger.debug("FileUtility will use system command");
 		}
 		
 		else {
 			//Tool cannot be used on this system
+		    logger.error("File Utility cannot be used on this system");
 			throw new FitsToolException("File Utility cannot be used on this system");
 		}
 		infoCommand.add("-v");		
@@ -82,6 +91,7 @@ public class FileUtility extends ToolBase {
 	}
 
 	public ToolOutput extractInfo(File file) throws FitsToolException {
+	    logger.debug("FileUtility.extractInfo starting");
 		long startTime = System.currentTimeMillis();
 		
 		List<String> execCommand = new ArrayList<String>();
@@ -179,6 +189,7 @@ public class FileUtility extends ToolBase {
 		
 		duration = System.currentTimeMillis()-startTime;
 		runStatus = RunStatus.SUCCESSFUL;
+        logger.debug("FileUtility.extractInfo finished");
 		return output;
 	}
 	
@@ -196,7 +207,7 @@ public class FileUtility extends ToolBase {
 		Element root = new Element("fileUtilityOutput");
 		//rawoutput
 		Element rawOutput = new Element("rawOutput");
-		rawOutput.setText(rawOutput_s);
+		rawOutput.setText(stripNonValidXMLCharacters(rawOutput_s));
 		root.addContent(rawOutput);
 		//mimetype
 		Element mime = new Element("mimetype");
@@ -204,7 +215,7 @@ public class FileUtility extends ToolBase {
 		root.addContent(mime);
 		//format
 		Element format = new Element("format");
-		format.setText(format_s);
+		format.setText(stripNonValidXMLCharacters(format_s));
 		root.addContent(format);
 		//charset
 		if(charset_s != null) {
@@ -250,4 +261,22 @@ public class FileUtility extends ToolBase {
 	public void setEnabled(boolean value) {
 		enabled = value;		
 	}
+	
+	 public String stripNonValidXMLCharacters(String in) {
+	        StringBuffer out = new StringBuffer(); // Used to hold the output.
+	        char current; // Used to reference the current character.
+
+	        if (in == null || ("".equals(in))) return ""; // vacancy test.
+	        for (int i = 0; i < in.length(); i++) {
+	            current = in.charAt(i); // NOTE: No IndexOutOfBoundsException caught here; it should not happen.
+	            if ((current == 0x9) ||
+	                (current == 0xA) ||
+	                (current == 0xD) ||
+	                ((current >= 0x20) && (current <= 0xD7FF)) ||
+	                ((current >= 0xE000) && (current <= 0xFFFD)) ||
+	                ((current >= 0x10000) && (current <= 0x10FFFF)))
+	                out.append(current);
+	        }
+	        return out.toString();
+	    }
 }

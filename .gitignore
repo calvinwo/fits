@@ -3,6 +3,7 @@
 /fitsBasicTestOutput.xml
 CVS
 TAGS
+<<<<<<< HEAD
 /target
 /test-output
 /output.txt
@@ -48,3 +49,11 @@ log.roo
 /logFile.log
 /bin
 /doc
+=======
+
+# Directory created by fits-blackbox-tester
+.bb-testing/
+
+# Mac OS X system file
+.DS_Store
+>>>>>>> 5c0b28bda3a26558be848b87a1f5eed60deb7ac8
