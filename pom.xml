@@ -27,7 +27,21 @@
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>edu.harvard.hul.ois.fits.Fits</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -43,6 +57,9 @@
 
 		<!-- Main FITS dependencies -->
 		<!--  from Central -->
+		
+		<!-- add Jaxen jars -->
+		
 		<dependency>
 		    <groupId>org.bouncycastle</groupId>
 		    <artifactId>bcmail-jdk14</artifactId>
