@@ -62,6 +62,7 @@ public class Exiftool extends ToolBase {
 		if (osName.startsWith("Windows")) {
 			//use provided Windows exiftool.exe 
 			osIsWindows = true;
+			// FIXME: copy exe to temp dir before execution!
 			infoCommand.addAll(winCommand);
 			info.setNote("exiftool for windows");
 		}

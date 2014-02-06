@@ -112,9 +112,9 @@ public class Fits {
 		if(FITS_HOME.length() > 0 && !FITS_HOME.endsWith(File.separator)) {
 				FITS_HOME = FITS_HOME+File.separator;
 		}*/
-		FITS_HOME = "main"+File.separator+"resources"+File.separator;
-		FITS_XML = FITS_HOME+"xml"+File.separator;
-		FITS_TOOLS = FITS_HOME+"tools"+File.separator;		
+		FITS_HOME = "";//"main"+File.separator+"resources"+File.separator;
+		FITS_XML = FITS_HOME+"xml/";
+		FITS_TOOLS = FITS_HOME+"tools/";		
 		try {
 			config = new XMLConfiguration(FITS_XML+"fits.xml");
 		} catch (ConfigurationException e) {

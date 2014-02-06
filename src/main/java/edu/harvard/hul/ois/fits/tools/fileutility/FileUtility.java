@@ -58,6 +58,7 @@ public class FileUtility extends ToolBase {
 			//use provided Windows File Utility
 			osIsWindows = true;
 			info.setDate(WIN_FILE_DATE);
+			// FIXME: copy exe to temp dir before execution!
 			infoCommand.addAll(WIN_COMMAND);
 		}
 		else if (testOSForCommand()){
