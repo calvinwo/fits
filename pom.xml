@@ -41,8 +41,111 @@
 	</repositories>
 	<dependencies>
 
-		<!-- These dependencies are unsorted -->
-
+		<!-- Main FITS dependencies -->
+		<!--  from Central -->
+		<dependency>
+		    <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcmail-jdk14</artifactId>
+		    <version>1.38</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.bouncycastle</groupId> -->
+<!-- 			<artifactId>bcmail-jdk14</artifactId> -->
+<!-- 			<version>132</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+			<groupId>commons-cli</groupId>
+			<artifactId>commons-cli</artifactId>
+			<version>1.1</version>
+		</dependency>
+			<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.5</version>
+			<scope>compile</scope>
+		</dependency>
+				<dependency>
+			<groupId>uk.gov.nationalarchives</groupId>
+			<artifactId>droid-command-line</artifactId>
+			<version>6.1.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+		</dependency>
+		<!-- saxon-jdom not included??? -->
+		<dependency>
+			<groupId>net.sf.saxon</groupId>
+			<artifactId>saxon</artifactId>
+<!-- 			<version>9.1.0.8</version> -->
+			<version>8.7</version>
+		</dependency>		
+		<!-- won't work -->
+		<dependency>
+			<groupId>net.sf.saxon</groupId>
+			<artifactId>saxon-jdom</artifactId>
+<!-- 			<version>9.1.0.8</version> -->
+			<version>8.7</version>
+		</dependency>
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>serializer</artifactId>
+			<version>2.7.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.staxmate</groupId>
+		    <artifactId>staxmate</artifactId>
+		    <version>2.0.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.woodstox</groupId>
+		    <artifactId>stax2-api</artifactId>
+		    <version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>tika-app</artifactId>
+			<version>1.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>xmlunit</groupId>
+		    <artifactId>xmlunit</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.woodstox</groupId>
+		    <artifactId>woodstox-core-lgpl</artifactId>
+		    <version>4.0.7</version>
+		</dependency>
+		<dependency>
+		    <groupId>saxpath</groupId>
+		    <artifactId>saxpath</artifactId>
+		    <version>1.0-FCS</version>
+		</dependency>
+		<!-- included in FITS -->
+		<dependency>
+			<groupId>com.therockquarry</groupId>
+			<artifactId>AES31</artifactId>
+			<version>1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>com.therockquarry</groupId>
 			<artifactId>AES31</artifactId>
@@ -53,152 +156,6 @@
 			<artifactId>fast-md5</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.xml.stream</groupId>
-			<artifactId>jsr173_1.0_api</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.xml</groupId>
-			<artifactId>xml-apis</artifactId>
-			<version>1.0</version>
-		</dependency>
-		
-		<!-- NZME dependencies -->
-		<!-- from Central -->
-		<dependency>
-			<groupId>pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>0.7.3</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>2.5.1-final-20040804</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- included jars -->
-		<dependency>
-			<groupId>blowfishj</groupId>
-			<artifactId>bfj</artifactId>
-			<version>220</version>
-		</dependency>
-		
-<!-- will these work? -->
-
-<!-- closet by date of class files, however, not all class files included -->
-<dependency>
-    <groupId>com.lowagie</groupId>
-    <artifactId>itext</artifactId>
-    <version>1.3.1</version>
-</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.lowagie</groupId> -->
-<!-- 			<artifactId>AllLibraries</artifactId> -->
-<!-- 			<version>1.0</version> -->
-<!-- 		</dependency> -->
-		
-<dependency>
-    <groupId>com.sun.xml.bind</groupId>
-    <artifactId>jaxb-impl</artifactId>
-    <version>2.0</version>
-</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>javax.xml.bind</groupId> -->
-<!-- 			<artifactId>jaxb-api</artifactId> -->
-<!-- 			<version>1.0</version> -->
-<!-- 		</dependency> -->
-		
-		
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.sun</groupId> -->
-<!-- 			<artifactId>jaxb-impl</artifactId> -->
-<!-- 			<version>1.0</version> -->
-<!-- 		</dependency> -->
-
-
-		<!-- bouncycastle libs -->
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.bouncycastle</groupId> -->
-<!-- 			<artifactId>bcmail</artifactId> -->
-<!-- 			<version>jdk14-132</version> -->
-<!-- 		</dependency>		 -->
-<dependency>
-    <groupId>org.bouncycastle</groupId>
-    <artifactId>bcmail-jdk14</artifactId>
-    <version>1.38</version>
-</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.bouncycastle</groupId> -->
-<!-- 			<artifactId>bcmail-jdk14</artifactId> -->
-<!-- 			<version>132</version> -->
-<!-- 		</dependency> -->
-<dependency>
-    <groupId>org.bouncycastle</groupId>
-    <artifactId>bcprov-jdk14</artifactId>
-    <version>1.38</version>
-</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.bouncycastle</groupId> -->
-<!-- 			<artifactId>bcprov-jdk14</artifactId> -->
-<!-- 			<version>132</version> -->
-<!-- 		</dependency> -->
-
-		<!-- These dependencies are not in central and need to be downloaded seperately -->
-		
-		<!-- http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-java-plat-419418.html#7017-jaf-1.0.2-oth-JPR -->
-		<dependency>
-		    <groupId>javax.activation</groupId>
-		    <artifactId>activation</artifactId>
-		    <version>1.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.3.2</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- These dependencies *are* contained within this project -->
-
-		<!-- reason: not in central -->	
-		<!-- Harvard -->
-		
-		<dependency>
-			<groupId>edu.harvard.hcl</groupId>
-			<artifactId>hclaps</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.harvard.hul.ois</groupId>
-			<artifactId>ots</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.harvard.hul.ois</groupId>
-			<artifactId>jhove</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.harvard.hul.ois</groupId>
-			<artifactId>jhove-handler</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.harvard.hul.ois</groupId>
-			<artifactId>jhove-module</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.harvard.hul.ois</groupId>
-			<artifactId>JhoveApp</artifactId>
-			<version>1.0</version>
-		</dependency>
-				
-		<!-- NZ -->
-		
 		<dependency>
 			<groupId>nz.gov.natlib</groupId>
 			<artifactId>metadata</artifactId>
@@ -285,148 +242,79 @@
 			<version>1.0</version>
 		</dependency>
 		
-
-		<!-- These dependencies are not contained within this project -->
-
+		
+		<!-- NZME dependencies -->
+		<!-- from Central -->
 		<dependency>
-			<groupId>uk.gov.nationalarchives</groupId>
-			<artifactId>droid-command-line</artifactId>
-			<version>6.1.3</version>
+			<groupId>pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>0.7.3</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
-		    <groupId>log4j</groupId>
-		    <artifactId>log4j</artifactId>
-		    <version>1.2.17</version>
+			<groupId>poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>2.5.1-final-20040804</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
-		    <groupId>saxpath</groupId>
-		    <artifactId>saxpath</artifactId>
-		    <version>1.0-FCS</version>
-		</dependency>
-		<dependency>
-		    <groupId>jgoodies</groupId>
-		    <artifactId>looks</artifactId>
-		    <version>1.2.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>javax.help</groupId>
-		    <artifactId>javahelp</artifactId>
-		    <version>2.0.02</version>
-		</dependency>
-		<dependency>
-		    <groupId>xmlunit</groupId>
-		    <artifactId>xmlunit</artifactId>
-		    <version>1.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.codehaus.woodstox</groupId>
-		    <artifactId>woodstox-core-lgpl</artifactId>
-		    <version>4.0.7</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.codehaus.staxmate</groupId>
-		    <artifactId>staxmate</artifactId>
-		    <version>2.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.codehaus.woodstox</groupId>
-		    <artifactId>stax2-api</artifactId>
-		    <version>3.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mvel</groupId>
-			<artifactId>mvel2</artifactId>
-			<version>2.0.18</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jwat</groupId>
-			<artifactId>jwat-common</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jwat</groupId>
-			<artifactId>jwat-arc</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jwat</groupId>
-			<artifactId>jwat-gzip</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jwat</groupId>
-			<artifactId>jwat-warc</artifactId>
-			<version>1.0.0</version>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk14</artifactId>
+			<version>1.38</version>
 		</dependency>
 <!-- 		<dependency> -->
-<!-- 			<groupId>org.jdom</groupId> -->
-<!-- 			<artifactId>jdom</artifactId> -->
-<!-- 			<version>1.1</version> -->
+<!-- 			<groupId>org.bouncycastle</groupId> -->
+<!-- 			<artifactId>bcprov-jdk14</artifactId> -->
+<!-- 			<version>132</version> -->
 <!-- 		</dependency> -->
+		<!-- included in FITS -->
 		<dependency>
-			<groupId>commons-cli</groupId>
-			<artifactId>commons-cli</artifactId>
+			<groupId>blowfishj</groupId>
+			<artifactId>bfj</artifactId>
+			<version>220</version>
+		</dependency>
+
+		<!-- reason: not in central -->	
+		<!-- Harvard jars -->
+		<dependency>
+			<groupId>edu.harvard.hcl</groupId>
+			<artifactId>hclaps</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>soap</groupId>
-			<artifactId>soap</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		<!-- saxon-jdom not included??? -->
-		<dependency>
-			<groupId>net.sf.saxon</groupId>
-			<artifactId>saxon</artifactId>
-<!-- 			<version>9.1.0.8</version> -->
-			<version>8.7</version>
-		</dependency>		
-		<!-- won't work -->
-		<dependency>
-			<groupId>net.sf.saxon</groupId>
-			<artifactId>saxon-jdom</artifactId>
-<!-- 			<version>9.1.0.8</version> -->
-			<version>8.7</version>
+			<groupId>edu.harvard.hul.ois</groupId>
+			<artifactId>ots</artifactId>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.1</version>
+			<groupId>edu.harvard.hul.ois</groupId>
+			<artifactId>jhove</artifactId>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.6</version>
+			<groupId>edu.harvard.hul.ois</groupId>
+			<artifactId>jhove-handler</artifactId>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.1.1</version>
+			<groupId>edu.harvard.hul.ois</groupId>
+			<artifactId>jhove-module</artifactId>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>xalan</groupId>
-			<artifactId>serializer</artifactId>
-			<version>2.7.1</version>
-			<scope>compile</scope>
+			<groupId>edu.harvard.hul.ois</groupId>
+			<artifactId>JhoveApp</artifactId>
+			<version>1.0</version>
 		</dependency>
 
-
-		<dependency>
-			<groupId>org.apache</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.5</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache</groupId>
-			<artifactId>tika-app</artifactId>
-			<version>1.3</version>
-			<scope>compile</scope>
-		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
+
+
 	</dependencies>
 </project>
