@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.harvard.hul.ois</groupId>
 	<artifactId>fits</artifactId>
-	<version>0.6.2</version>
+	<version>0.8.0</version>
 	<build>
 		<!-- <sourceDirectory>src</sourceDirectory> -->
 		<!-- <testSourceDirectory>tests</testSourceDirectory> -->
@@ -15,8 +15,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.0</version>
 				<configuration>
-					<source />
-					<target />
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 
@@ -63,6 +63,22 @@
 			<artifactId>xml-apis</artifactId>
 			<version>1.0</version>
 		</dependency>
+		
+		<!-- NZME dependencies -->
+		<!-- from Central -->
+		<dependency>
+			<groupId>pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>0.7.3</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>2.5.1-final-20040804</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- included jars -->
 		<dependency>
 			<groupId>blowfishj</groupId>
 			<artifactId>bfj</artifactId>
@@ -147,15 +163,7 @@
 
 		<!-- These dependencies *are* contained within this project -->
 
-		<!-- reason: old version of droid, not in central -->
-		<dependency>
-			<groupId>uk.gov.nationalarchives</groupId>
-			<artifactId>droid</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<!-- reason: not in central -->
-		
+		<!-- reason: not in central -->	
 		<!-- Harvard -->
 		
 		<dependency>
@@ -281,6 +289,16 @@
 		<!-- These dependencies are not contained within this project -->
 
 		<dependency>
+			<groupId>uk.gov.nationalarchives</groupId>
+			<artifactId>droid-command-line</artifactId>
+			<version>6.1.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+		</dependency>
+		<dependency>
 		    <groupId>saxpath</groupId>
 		    <artifactId>saxpath</artifactId>
 		    <version>1.0-FCS</version>
@@ -390,18 +408,8 @@
 			<version>2.7.1</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>2.5.1-final-20040804</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>0.7.3</version>
-			<scope>compile</scope>
-		</dependency>
+
+
 		<dependency>
 			<groupId>org.apache</groupId>
 			<artifactId>commons-configuration</artifactId>

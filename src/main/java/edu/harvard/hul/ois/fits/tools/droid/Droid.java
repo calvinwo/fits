@@ -53,14 +53,6 @@ public class Droid extends ToolBase {
 		}
 		try {
 			String droid_conf = Fits.FITS_TOOLS+"droid"+File.separator;
-<<<<<<< HEAD:src/main/java/edu/harvard/hul/ois/fits/tools/droid/Droid.java
-			URL droidConfig = this.getClass().getClassLoader().getResource(droid_conf+"DROID_config.xml");
-			URL sigFile = this.getClass().getClassLoader().getResource(droid_conf+Fits.config.getString("droid_sigfile"));
-			// The Droid(URL configFile, URL sigFileURL) constructor is broken
-			//  So create droid instance and read signature file manually.
-			droid = new uk.gov.nationalarchives.droid.Droid(droidConfig);
-			droid.readSignatureFile(sigFile);
-=======
 			File sigFile = new File(droid_conf+Fits.config.getString("droid_sigfile"));
 	        try {
 	            droidQuery = new DroidQuery (sigFile);
@@ -68,7 +60,6 @@ public class Droid extends ToolBase {
 	        catch (SignatureParseException e) {
 	            throw new FitsToolException("Problem with DROID signature file");
 	        }
->>>>>>> 5c0b28bda3a26558be848b87a1f5eed60deb7ac8:src/edu/harvard/hul/ois/fits/tools/droid/Droid.java
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new FitsToolException("Error initilizing DROID",e);

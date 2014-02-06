@@ -39,17 +39,9 @@ import edu.harvard.hul.ois.fits.FitsOutput;
 */
 
 public class TestOutput {
-<<<<<<< HEAD:src/test/java/edu/harvard/hul/ois/fits/tests/TestOutput.java
-	/*
-	private static final String USAGE = "generatetestoutput [create | test]";
-	private static final String TEST_INPUT = "tests/input";
-	private static final String TEST_OUTPUT = "tests/output";
-*/
-=======
 	
 	private static final String USAGE = "generatetestoutput [create | test] input_dir output_dir";
 
->>>>>>> 5c0b28bda3a26558be848b87a1f5eed60deb7ac8:src/edu/harvard/hul/ois/fits/tests/TestOutput.java
 	/**
 	 * @param args
 	 * @throws Exception 
