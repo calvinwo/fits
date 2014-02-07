@@ -1,0 +1,142 @@
+
+Working notes for this tree:
+
+-> Sorted dependencies can be referenced here: https://github.com/harvard-lts/fits/tree/master/lib
+-> Need a convenience method to load files/resources from the jar, or look in local directory - currently loading fails as FITS expects a file
+-> File and Exiftool are disabled in fits.xml as the executables are now in a jar, not a file.  Therefore need a convenience method to extract the exe when it is first used and keep a static reference to that exe so it can be reused.
+-> Jaxen is not in the pom but is required by something (see master fits tree for jars required)
+-> An older version of Saxon is used in the pom, compatibility should be checked
+-> Problem with Jhove (related to file/resource problems?) - also disabled in fits.xml
+-> Potential issues with dependencies-of-(binary)dependencies
+
+Merge to FITS master needs to be checked that it is correct.
+Some dependencies might be slightly off - also need to be checked (bouncycastle etc)
+
+The 72mb all-in-one jar does execute but doesn't actually do anything.
+
+Below are dependencies extracted from the pom that might be useful later (note these may be related to an older version of Droid that is no longer in FITS)
+
+
+	<!-- These dependencies are unsorted -->
+
+
+		<dependency>
+			<groupId>javax.xml.stream</groupId>
+			<artifactId>jsr173_1.0_api</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+<!-- will these work? -->
+
+<!-- closet by date of class files, however, not all class files included -->
+<dependency>
+    <groupId>com.lowagie</groupId>
+    <artifactId>itext</artifactId>
+    <version>1.3.1</version>
+</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.lowagie</groupId> -->
+<!-- 			<artifactId>AllLibraries</artifactId> -->
+<!-- 			<version>1.0</version> -->
+<!-- 		</dependency> -->
+		
+<dependency>
+    <groupId>com.sun.xml.bind</groupId>
+    <artifactId>jaxb-impl</artifactId>
+    <version>2.0</version>
+</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.xml.bind</groupId> -->
+<!-- 			<artifactId>jaxb-api</artifactId> -->
+<!-- 			<version>1.0</version> -->
+<!-- 		</dependency> -->
+		
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.sun</groupId> -->
+<!-- 			<artifactId>jaxb-impl</artifactId> -->
+<!-- 			<version>1.0</version> -->
+<!-- 		</dependency> -->
+
+
+		<!-- These dependencies are not in central and need to be downloaded seperately -->
+		
+		<!-- http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-java-plat-419418.html#7017-jaf-1.0.2-oth-JPR -->
+		<dependency>
+		    <groupId>javax.activation</groupId>
+		    <artifactId>activation</artifactId>
+		    <version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.3.2</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- These dependencies *are* contained within this project -->
+
+
+				
+		<!-- NZ -->
+		
+
+		
+
+		<!-- These dependencies are not contained within this project -->
+
+
+
+		<dependency>
+		    <groupId>jgoodies</groupId>
+		    <artifactId>looks</artifactId>
+		    <version>1.2.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.help</groupId>
+		    <artifactId>javahelp</artifactId>
+		    <version>2.0.02</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.mvel</groupId>
+			<artifactId>mvel2</artifactId>
+			<version>2.0.18</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jwat</groupId>
+			<artifactId>jwat-common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jwat</groupId>
+			<artifactId>jwat-arc</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jwat</groupId>
+			<artifactId>jwat-gzip</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jwat</groupId>
+			<artifactId>jwat-warc</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.jdom</groupId> -->
+<!-- 			<artifactId>jdom</artifactId> -->
+<!-- 			<version>1.1</version> -->
+<!-- 		</dependency> -->
+
+		<dependency>
+			<groupId>soap</groupId>
+			<artifactId>soap</artifactId>
+			<version>2.3.1</version>
+		</dependency>
