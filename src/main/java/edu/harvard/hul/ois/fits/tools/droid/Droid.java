@@ -52,8 +52,7 @@ public class Droid extends ToolBase {
 		    throw new FitsToolException ("DROID cannot run under Java 8");
 		}
 		try {
-			String droid_conf = Fits.FITS_TOOLS+"droid"+File.separator;
-			File sigFile = new File(droid_conf+Fits.config.getString("droid_sigfile"));
+			File sigFile = Fits.FITS_TOOLS.resolve("droid").resolve(Fits.config.getString("droid_sigfile")).toFile();
 	        try {
 	            droidQuery = new DroidQuery (sigFile);
 	        }

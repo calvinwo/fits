@@ -39,9 +39,9 @@ import edu.harvard.hul.ois.fits.Fits;
 import edu.harvard.hul.ois.fits.FitsOutput;
 import edu.harvard.hul.ois.fits.exceptions.FitsConfigurationException;
 import edu.harvard.hul.ois.fits.identity.ExternalIdentifier;
-import edu.harvard.hul.ois.fits.identity.ToolIdentity;
 import edu.harvard.hul.ois.fits.identity.FitsIdentity;
 import edu.harvard.hul.ois.fits.identity.FormatVersion;
+import edu.harvard.hul.ois.fits.identity.ToolIdentity;
 import edu.harvard.hul.ois.fits.tools.Tool;
 import edu.harvard.hul.ois.fits.tools.ToolInfo;
 import edu.harvard.hul.ois.fits.tools.ToolOutput;
@@ -73,7 +73,7 @@ public class OISConsolidator implements ToolOutputConsolidator {
 		displayToolOutput = Fits.config.getBoolean("output.display-tool-output",false);
 		SAXBuilder saxBuilder = new SAXBuilder();
 		try {
-			formatTree = saxBuilder.build(this.getClass().getClassLoader().getResource(Fits.FITS_XML+"fits_format_tree.xml"));
+			formatTree = saxBuilder.build(Fits.FITS_XML.resolve("fits_format_tree.xml").toFile());
 		} catch (Exception e) {
 			throw new FitsConfigurationException("",e);
 		} 

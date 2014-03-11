@@ -19,13 +19,13 @@
 package edu.harvard.hul.ois.fits.junit;
 
 import java.io.File;
+import java.nio.file.Paths;
+
+import org.custommonkey.xmlunit.XMLTestCase;
 import org.junit.Test;
 
 import edu.harvard.hul.ois.fits.Fits;
-import edu.harvard.hul.ois.fits.FitsOutput;
 import edu.harvard.hul.ois.fits.tools.Tool;
-
-import org.custommonkey.xmlunit.*;
 
 
 public class FitsBasicTest extends XMLTestCase {
@@ -33,8 +33,10 @@ public class FitsBasicTest extends XMLTestCase {
     
 	@Test
 	public void testFits() throws Exception {	
-    	Fits fits = new Fits("");
-    	File input = new File(this.getClass().getClassLoader().getResource("testfiles/test.jp2").getFile());
+    	Fits fits = new Fits(Paths.get("target/classes/").toAbsolutePath().toString());
+    	File jp2file = Paths.get(this.getClass().getResource("/testfiles/test.jp2").toURI()).toFile();
+    	File wavfile = Paths.get(this.getClass().getResource("/testfiles/test.wav").toURI()).toFile();
+    	File txtfile = Paths.get(this.getClass().getResource("/testfiles/utf16.txt").toURI()).toFile();
     	
     	for(Tool t : fits.getToolbelt().getTools()) {
     		if(t.getToolInfo().getName().equals("Jhove")) {
@@ -45,8 +47,12 @@ public class FitsBasicTest extends XMLTestCase {
     		}
     	}
     	
-    	FitsOutput fitsOut = fits.examine(input);
-    	fitsOut.saveToDisk("fitsBasicTestOutput.xml");
+    	fits.examine(jp2file);
+    	fits.examine(wavfile);
+    	fits.examine(txtfile);
+    	
+    	//fitsOut.
+    	//fitsOut.saveToDisk("fitsBasicTestOutput.xml");
     	
 	}
 

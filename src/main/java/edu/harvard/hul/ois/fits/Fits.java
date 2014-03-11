@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -71,9 +73,9 @@ public class Fits {
 
   private static Logger logger;
 
-  public static volatile String FITS_HOME;
-  public static String FITS_XML;
-  public static String FITS_TOOLS;
+  public static volatile Path FITS_HOME;
+  public static Path FITS_XML;
+  public static Path FITS_TOOLS;
   public static XMLConfiguration config;
   public static FitsXmlMapper mapper;
   public static boolean validateToolOutput;
@@ -115,9 +117,9 @@ public class Fits {
 //      FITS_HOME = FITS_HOME + File.separator;
 //    }
 
-    FITS_HOME = "";// root of jar
-    FITS_XML = FITS_HOME + "xml/";// + File.separator;
-    FITS_TOOLS = FITS_HOME + "tools/";// + File.separator;
+    FITS_HOME = Paths.get(fits_home);// root of jar
+    FITS_XML = FITS_HOME.resolve("xml");// + File.separator;
+    FITS_TOOLS = FITS_HOME.resolve("tools");// + File.separator;
 
     // Set up logging.
     // Now using an explicit properties file, because otherwoise DROID will
@@ -131,7 +133,7 @@ public class Fits {
 
     logger = Logger.getLogger( this.getClass() );
     try {
-      config = new XMLConfiguration( FITS_XML + "fits.xml" );
+      config = new XMLConfiguration( FITS_XML.resolve("fits.xml").toString() );
     } catch (ConfigurationException e) {
       logger.fatal( "Error reading " + FITS_XML + "fits.xml: " + e.getClass().getName() );
       throw new FitsConfigurationException( "Error reading " + FITS_XML + "fits.xml", e );
@@ -173,7 +175,7 @@ public class Fits {
       throw new FitsConfigurationException( "Error initializing " + consolidatorClass, e );
     }
 
-    toolbelt = new ToolBelt( FITS_XML + "fits.xml" );
+    toolbelt = new ToolBelt( FITS_XML.resolve("fits.xml") );
 
   }
 

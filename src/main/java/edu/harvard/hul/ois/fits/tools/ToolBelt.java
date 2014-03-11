@@ -19,6 +19,7 @@
 package edu.harvard.hul.ois.fits.tools;
 
 import java.io.PrintStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,10 +46,10 @@ public class ToolBelt {
     
 	private List<Tool> tools;
 	
-	public ToolBelt(String configFile) throws FitsConfigurationException {
+	public ToolBelt(Path configFile) throws FitsConfigurationException {
 		XMLConfiguration config = null;
 		try {
-			config = new XMLConfiguration(configFile);
+			config = new XMLConfiguration(configFile.toFile());
 		} catch (ConfigurationException e) {
 			throw new FitsConfigurationException("Error reading "+configFile,e);
 		}

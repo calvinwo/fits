@@ -20,7 +20,9 @@ package edu.harvard.hul.ois.fits;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
+
 import org.apache.log4j.Logger;
 
 
@@ -33,9 +35,9 @@ public class FitsMetadataValues {
 	
 	private Logger logger = Logger.getLogger(this.getClass());
 	
-	private String mimeMapProperties = Fits.FITS_XML + "mime_map.txt";
-	private String formatMapProperties = Fits.FITS_XML + "format_map.txt";
-	private String mimeToFormatMapProperties = Fits.FITS_XML + "mime_to_format_map.txt";
+	private Path mimeMapProperties = Fits.FITS_XML.resolve("mime_map.txt");
+	private Path formatMapProperties = Fits.FITS_XML.resolve("format_map.txt");
+	private Path mimeToFormatMapProperties = Fits.FITS_XML.resolve("mime_to_format_map.txt");
 	
     private HashMap<String, String> mimeMap = new HashMap<String, String>();
     private HashMap<String, String> formatMap = new HashMap<String, String>();
@@ -225,11 +227,11 @@ public class FitsMetadataValues {
         return mimeToFormatMap.get(mime);
     }
     
-    private HashMap<String,String> parseFile(String inputFile) {
+    private HashMap<String,String> parseFile(Path inputFile) {
     	HashMap<String,String> map = new HashMap<String,String>();
     	BufferedReader in = null;
 		try {
-			in = new BufferedReader(new FileReader(inputFile));
+			in = new BufferedReader(new FileReader(inputFile.toFile()));
 			String line;
 			while ((line = in.readLine()) != null) {
 				if(!line.startsWith("#") && !line.startsWith("\"#") ) {

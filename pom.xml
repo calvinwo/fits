@@ -52,30 +52,34 @@
 			<url>file://${project.baseUri}src/main/resources/lib</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+			<id>repo</id>
+			<url>https://github.com/openplanets/mvn-repo/raw/master/releases</url>
+		</repository>
 	</repositories>
 	<dependencies>
 
 		<!-- Main FITS dependencies -->
-		<!--  from Central -->
-		
+		<!-- from Central -->
+
 		<!-- add Jaxen jars -->
-		
+
 		<dependency>
-		    <groupId>org.bouncycastle</groupId>
-		    <artifactId>bcmail-jdk14</artifactId>
-		    <version>1.38</version>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcmail-jdk14</artifactId>
+			<version>1.38</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.bouncycastle</groupId> -->
-<!-- 			<artifactId>bcmail-jdk14</artifactId> -->
-<!-- 			<version>132</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.bouncycastle</groupId> -->
+		<!-- <artifactId>bcmail-jdk14</artifactId> -->
+		<!-- <version>132</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>commons-cli</groupId>
 			<artifactId>commons-cli</artifactId>
 			<version>1.1</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
@@ -91,34 +95,44 @@
 			<version>1.1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache</groupId>
+			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<version>1.5</version>
 			<scope>compile</scope>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>uk.gov.nationalarchives</groupId>
 			<artifactId>droid-command-line</artifactId>
 			<version>6.1.3</version>
 		</dependency>
 		<dependency>
-		    <groupId>log4j</groupId>
-		    <artifactId>log4j</artifactId>
-		    <version>1.2.17</version>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
 		</dependency>
 		<!-- saxon-jdom not included??? -->
 		<dependency>
 			<groupId>net.sf.saxon</groupId>
 			<artifactId>saxon</artifactId>
-<!-- 			<version>9.1.0.8</version> -->
+			<!-- <version>9.1.0.8</version> -->
 			<version>8.7</version>
-		</dependency>		
+		</dependency>
 		<!-- won't work -->
 		<dependency>
 			<groupId>net.sf.saxon</groupId>
 			<artifactId>saxon-jdom</artifactId>
-<!-- 			<version>9.1.0.8</version> -->
+			<!-- <version>9.1.0.8</version> -->
 			<version>8.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>1.1.6</version>
 		</dependency>
 		<dependency>
 			<groupId>xalan</groupId>
@@ -127,35 +141,40 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.codehaus.staxmate</groupId>
-		    <artifactId>staxmate</artifactId>
-		    <version>2.0.0</version>
+			<groupId>org.codehaus.staxmate</groupId>
+			<artifactId>staxmate</artifactId>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.codehaus.woodstox</groupId>
-		    <artifactId>stax2-api</artifactId>
-		    <version>3.0.1</version>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>stax2-api</artifactId>
+			<version>3.0.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache</groupId>
-			<artifactId>tika-app</artifactId>
-			<version>1.3</version>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-bundle</artifactId>
+			<version>1.5</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-		    <groupId>xmlunit</groupId>
-		    <artifactId>xmlunit</artifactId>
-		    <version>1.2</version>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.codehaus.woodstox</groupId>
-		    <artifactId>woodstox-core-lgpl</artifactId>
-		    <version>4.0.7</version>
+			<groupId>xmlunit</groupId>
+			<artifactId>xmlunit</artifactId>
+			<version>1.2</version>
 		</dependency>
 		<dependency>
-		    <groupId>saxpath</groupId>
-		    <artifactId>saxpath</artifactId>
-		    <version>1.0-FCS</version>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>woodstox-core-lgpl</artifactId>
+			<version>4.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>saxpath</groupId>
+			<artifactId>saxpath</artifactId>
+			<version>1.0-FCS</version>
 		</dependency>
 		<!-- included in FITS -->
 		<dependency>
@@ -174,29 +193,29 @@
 			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>metadata</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
-			<artifactId>bmp_adapter</artifactId>
-			<version>1.0</version>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
+			<artifactId>bmp-adapter</artifactId>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>excel_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>gif_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>html_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
 			<groupId>nz.gov.natlib.adapter</groupId>
@@ -204,9 +223,9 @@
 			<version>1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>mp3_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
 			<groupId>nz.gov.natlib.adapter</groupId>
@@ -214,52 +233,52 @@
 			<version>2.0</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>msworks_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>openoffice_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>pdf_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>pdfbox_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>powerpoint_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>tiff_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>wave_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>wordperfect_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
 		<dependency>
-			<groupId>nz.gov.natlib.adapter</groupId>
+			<groupId>nz.govt.natlib.metadata-extractor</groupId>
 			<artifactId>xml_adapter</artifactId>
-			<version>1.0</version>
+			<version>3.5</version>
 		</dependency>
-		
-		
+
+
 		<!-- NZME dependencies -->
 		<!-- from Central -->
 		<dependency>
@@ -279,11 +298,11 @@
 			<artifactId>bcprov-jdk14</artifactId>
 			<version>1.38</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.bouncycastle</groupId> -->
-<!-- 			<artifactId>bcprov-jdk14</artifactId> -->
-<!-- 			<version>132</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.bouncycastle</groupId> -->
+		<!-- <artifactId>bcprov-jdk14</artifactId> -->
+		<!-- <version>132</version> -->
+		<!-- </dependency> -->
 		<!-- included in FITS -->
 		<dependency>
 			<groupId>blowfishj</groupId>
@@ -291,7 +310,7 @@
 			<version>220</version>
 		</dependency>
 
-		<!-- reason: not in central -->	
+		<!-- reason: not in central -->
 		<!-- Harvard jars -->
 		<dependency>
 			<groupId>edu.harvard.hcl</groupId>
@@ -324,7 +343,7 @@
 			<version>1.0</version>
 		</dependency>
 
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
