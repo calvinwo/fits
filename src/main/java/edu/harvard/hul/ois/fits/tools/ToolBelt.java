@@ -19,6 +19,7 @@
 package edu.harvard.hul.ois.fits.tools;
 
 import java.io.PrintStream;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +50,15 @@ public class ToolBelt {
 	public ToolBelt(Path configFile) throws FitsConfigurationException {
 		XMLConfiguration config = null;
 		try {
-			config = new XMLConfiguration(configFile.toFile());
+			config = new XMLConfiguration(configFile.toUri().toURL());
 		} catch (ConfigurationException e) {
 			throw new FitsConfigurationException("Error reading "+configFile,e);
 		}
+        catch (MalformedURLException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 	
 		// Collect the tools-used elements
 		List<ToolsUsedItem> toolsUsedList = processToolsUsed(config);

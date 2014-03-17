@@ -23,11 +23,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jdom.Document;
 import org.apache.log4j.Logger;
+import org.jdom.Document;
 
 import edu.harvard.hul.ois.fits.Fits;
 import edu.harvard.hul.ois.fits.exceptions.FitsToolException;
@@ -45,7 +46,7 @@ public class FFIdent extends ToolBase {
     private final static String TOOL_DATE = "2005-10-21";
             
 	private FormatIdentification identifier = null;
-	public final static String xslt =Fits.FITS_XML+"/ffident/ffident_to_fits.xslt";
+	public final static Path xslt =Fits.FITS_XML.resolve("/ffident/ffident_to_fits.xslt");
 	private boolean enabled = true;
 
     private static final Logger logger = Logger.getLogger(FFIdent.class);

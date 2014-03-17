@@ -19,13 +19,13 @@
 package edu.harvard.hul.ois.fits.tools.fileutility;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -50,7 +50,7 @@ public class FileUtility extends ToolBase {
 	
     private static final Logger logger = Logger.getLogger(FileUtility.class);
 
-	public final static String xslt = Fits.FITS_XML+"fileutility/fileutility_to_fits.xslt";
+	public final static Path xslt = Fits.FITS_XML.resolve("fileutility/fileutility_to_fits.xslt");
 
 	public FileUtility() throws FitsToolException{	
         logger.debug ("Initializing FileUtility");

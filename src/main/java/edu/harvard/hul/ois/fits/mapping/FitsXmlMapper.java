@@ -19,6 +19,7 @@
 package edu.harvard.hul.ois.fits.mapping;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class FitsXmlMapper {
 	
 	public FitsXmlMapper() throws JDOMException, IOException {
 		 SAXBuilder saxBuilder = new SAXBuilder();
-		 Document doc = saxBuilder.build(FITS_XML_MAP_PATH.toFile());
+		 Document doc = saxBuilder.build(FITS_XML_MAP_PATH.toUri().toURL());
 		 List<Element> tElements = doc.getRootElement().getChildren("tool");		 
 		 for(Element tElement : tElements) {
 			 ToolMap xmlMap = new ToolMap(tElement);

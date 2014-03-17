@@ -4,8 +4,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.jdom.Document;
 import org.jdom.output.Format;
@@ -17,7 +20,7 @@ import edu.harvard.hul.ois.fits.exceptions.FitsException;
 public class FitsJarMain {
 
 	
-	 public static void main(String[] args) throws IOException {
+	 public static void main(String[] args) throws IOException, URISyntaxException {
 	     if (args.length != 2) {
 	         throw new RuntimeException("Usage: FitsJarMain <fits-config-dir> <input-file>");
 	     }
@@ -25,7 +28,7 @@ public class FitsJarMain {
 	     File file = new File(args[1]);
 	     String filePath = file.getAbsolutePath();
 	     File configDir = new File(args[0]);
-	     String configDirPath = configDir.getAbsolutePath();
+	     Path configDirPath = Paths.get(configDir.getAbsolutePath());
 	     if (!file.exists()) {
 	         throw new IllegalArgumentException("Arg file !exist: " + filePath);
 	     }

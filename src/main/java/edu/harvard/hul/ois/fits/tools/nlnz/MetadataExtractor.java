@@ -22,10 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-
-import org.jdom.Document;
-import org.jdom.JDOMException;
-import org.apache.log4j.Logger;
+import java.nio.file.Path;
 
 import nz.govt.natlib.AdapterFactory;
 import nz.govt.natlib.adapter.DataAdapter;
@@ -33,6 +30,11 @@ import nz.govt.natlib.fx.ParserContext;
 import nz.govt.natlib.fx.ParserListener;
 import nz.govt.natlib.meta.config.Config;
 import nz.govt.natlib.meta.harvester.DTDXmlParserListener;
+
+import org.apache.log4j.Logger;
+import org.jdom.Document;
+import org.jdom.JDOMException;
+
 import edu.harvard.hul.ois.fits.Fits;
 import edu.harvard.hul.ois.fits.exceptions.FitsException;
 import edu.harvard.hul.ois.fits.exceptions.FitsToolException;
@@ -49,14 +51,14 @@ public class MetadataExtractor extends ToolBase {
     private final static String TOOL_VERSION = "3.4GA";
     private final static String TOOL_DATE = "12/21/2007";
     
-	public final static String nlnzFitsConfig = Fits.FITS_XML+"nlnz"+File.separator+"fits"+File.separator;
+	public final static Path nlnzFitsConfig = Fits.FITS_XML.resolve("nlnz/fits");
 	private boolean enabled = true;
     private static final Logger logger = Logger.getLogger(MetadataExtractor.class);
 	
 	public MetadataExtractor() throws FitsException {	
         logger.debug ("Initializing MetadataExtractor");
 		info = new ToolInfo(TOOL_NAME,TOOL_VERSION,TOOL_DATE);
-		transformMap = XsltTransformMap.getMap(nlnzFitsConfig+"nlnz_xslt_map.xml");
+		transformMap = XsltTransformMap.getMap(nlnzFitsConfig.resolve("nlnz_xslt_map.xml"));
 	}
 
 	public ToolOutput extractInfo(File file) throws FitsToolException {
@@ -66,9 +68,8 @@ public class MetadataExtractor extends ToolBase {
 		//Document rawDom = null;
 
 		// Make sure the Harvester System is initialized.
-		//Config.getInstance();
-		Config.getInstance().setXMLBaseURL(this.getClass().getClassLoader().getResource(Fits.FITS_XML+"nlnz").getPath());
-		
+		Config.getInstance();
+		Config.getInstance().setXMLBaseURL(Fits.FITS_XML.resolve("nlnz").toAbsolutePath().toString());
 		// Get the appropriate adapter.
 		DataAdapter adapter = AdapterFactory.getInstance().getAdapter(file);		
 		
@@ -151,7 +152,7 @@ public class MetadataExtractor extends ToolBase {
 			if(format != null) {
 				String xsltTransform = (String)transformMap.get(format.toUpperCase());
 				if(xsltTransform != null) {
-					fitsXml = transform(nlnzFitsConfig+xsltTransform,dom);
+					fitsXml = transform(nlnzFitsConfig.resolve(xsltTransform),dom);
 				}
 			}
 		}

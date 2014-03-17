@@ -73,7 +73,7 @@ public class OISConsolidator implements ToolOutputConsolidator {
 		displayToolOutput = Fits.config.getBoolean("output.display-tool-output",false);
 		SAXBuilder saxBuilder = new SAXBuilder();
 		try {
-			formatTree = saxBuilder.build(Fits.FITS_XML.resolve("fits_format_tree.xml").toFile());
+			formatTree = saxBuilder.build(Fits.FITS_XML.resolve("fits_format_tree.xml").toUri().toURL());
 		} catch (Exception e) {
 			throw new FitsConfigurationException("",e);
 		} 

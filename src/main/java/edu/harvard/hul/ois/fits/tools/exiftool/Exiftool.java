@@ -22,6 +22,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,12 +57,12 @@ public class Exiftool extends ToolBase {
 	private final static String TOOL_NAME = "Exiftool";
 	private boolean enabled = true;
 	
-	public final static String exiftoolFitsConfig = Fits.FITS_XML+"exiftool"+File.separator;
+	public final static Path exiftoolFitsConfig = Fits.FITS_XML.resolve("exiftool");
 	public final static String genericTransform = "exiftool_generic_to_fits.xslt";
 
     private static final Logger logger = Logger.getLogger(Exiftool.class);
 
-	public Exiftool() throws FitsException {
+	public Exiftool() throws FitsException, IOException {
         logger.debug ("Initializing Exiftool");
 
 		String osName = System.getProperty("os.name");
@@ -89,7 +93,8 @@ public class Exiftool extends ToolBase {
 		infoCommand.add("-ver");
 		versionOutput = CommandLine.exec(infoCommand,null);	
 		info.setVersion(versionOutput.trim());
-		transformMap = XsltTransformMap.getMap(exiftoolFitsConfig+"exiftool_xslt_map.xml");
+		Files.copy(exiftoolFitsConfig.resolve("exiftool_common_to_fits.xslt"), Paths.get("exiftool_common_to_fits.xslt"),StandardCopyOption.REPLACE_EXISTING);
+		transformMap = XsltTransformMap.getMap(exiftoolFitsConfig.resolve("exiftool_xslt_map.xml"));
 	}
 
 	public ToolOutput extractInfo(File file) throws FitsToolException {
@@ -153,11 +158,11 @@ public class Exiftool extends ToolBase {
 			
 		Document fitsXml = null;
 		if(xsltTransform != null) {
-			fitsXml = transform(exiftoolFitsConfig+xsltTransform,rawOut);
+			fitsXml = transform(exiftoolFitsConfig.resolve(xsltTransform),rawOut);
 		}
 		else {
 			//use generic transform
-			fitsXml = transform(exiftoolFitsConfig+genericTransform,rawOut);
+			fitsXml = transform(exiftoolFitsConfig.resolve(genericTransform),rawOut);
 		}
 		output = new ToolOutput(this,fitsXml,rawOut);
 		//}

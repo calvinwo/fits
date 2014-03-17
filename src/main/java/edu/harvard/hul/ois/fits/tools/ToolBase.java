@@ -18,14 +18,22 @@
  */
 package edu.harvard.hul.ois.fits.tools;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-
 import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
 
@@ -33,9 +41,10 @@ import net.sf.saxon.Configuration;
 import net.sf.saxon.TransformerFactoryImpl;
 import net.sf.saxon.jdom.DocumentWrapper;
 
+import org.jdom.Document;
 import org.jdom.input.SAXBuilder;
 import org.jdom.transform.JDOMResult;
-import org.jdom.Document;
+
 import edu.harvard.hul.ois.fits.exceptions.FitsToolException;
 import edu.harvard.hul.ois.fits.identity.ToolIdentity;
 
@@ -124,22 +133,32 @@ public abstract class ToolBase implements Tool {
 		return null;
 	}
 
-	public Document transform(String xslt, Document input) throws FitsToolException {
+	public Document transform(Path xslt, Document input) throws FitsToolException {
 		Document doc = null;
 		try {
 			Configuration config = ((TransformerFactoryImpl)tFactory).getConfiguration();
 			DocumentWrapper docw = new DocumentWrapper(input,null,config);
 			JDOMResult out = new JDOMResult();
-			
-			
-			Templates templates = tFactory.newTemplates(new StreamSource(this.getClass().getClassLoader().getResource(xslt).getFile()));
+			Charset charset = Charset.forName("UTF-8");
+			Templates templates = tFactory.newTemplates(new StreamSource(Files.newBufferedReader(xslt, charset)));
 			Transformer transformer = templates.newTransformer();
 			transformer.transform(docw, out);
 			doc = out.getDocument();
 		}
-		catch(Exception e) {
-			throw new FitsToolException(info.getName()+": Error converting output using "+xslt,e);
-		}
+        catch (IOException e)
+        {
+           throw new FitsToolException(info.getName()+": Error converting output using "+xslt,e);
+        }
+        catch (TransformerConfigurationException e)
+        {
+            e.printStackTrace();
+            throw new FitsToolException(info.getName()+": Error getting stream using "+xslt,e);
+        }
+        catch (TransformerException e)
+        {
+            throw new FitsToolException(info.getName()+": Error transforming output using "+xslt,e);
+        }
+        
 		return doc;
 	}
 	

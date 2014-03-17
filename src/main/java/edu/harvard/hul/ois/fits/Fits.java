@@ -24,6 +24,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -93,11 +96,12 @@ public class Fits {
 
   private static boolean traverseDirs;
 
-  public Fits() throws FitsException {
-    this( null );
+  public Fits() throws FitsException, URISyntaxException {
+      //Paths.get(Fits.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+    this(Paths.get("/"));
   }
 
-  public Fits( String fits_home ) throws FitsConfigurationException {
+  public Fits( Path fits_home ) throws FitsConfigurationException, URISyntaxException {
 
     // Set BB_HOME dir with environment variable
 //    FITS_HOME = System.getenv( "FITS_HOME" );
@@ -116,10 +120,9 @@ public class Fits {
 //    if (FITS_HOME.length() > 0 && !FITS_HOME.endsWith( File.separator )) {
 //      FITS_HOME = FITS_HOME + File.separator;
 //    }
-
-    FITS_HOME = Paths.get(fits_home);// root of jar
-    FITS_XML = FITS_HOME.resolve("xml");// + File.separator;
-    FITS_TOOLS = FITS_HOME.resolve("tools");// + File.separator;
+    FITS_HOME = fits_home;// root of jar
+    FITS_XML = FITS_HOME.resolve("xml");
+    FITS_TOOLS = FITS_HOME.resolve("tools");
 
     // Set up logging.
     // Now using an explicit properties file, because otherwoise DROID will
@@ -129,14 +132,19 @@ public class Fits {
     //  If log4j.debug=true is set then it shows that this doesn't actually find the specified
     //  log4j.properties file.  Leaving as is for now since overall logging works as intended.
     //  also note that any logging statements in this class probably do not work.
-    System.setProperty( "log4j.configuration", FITS_TOOLS + "log4j.properties" );
+    System.setProperty( "log4j.configuration", FITS_HOME.resolve("log4j.properties" ).toAbsolutePath().toString());
 
     logger = Logger.getLogger( this.getClass() );
     try {
-      config = new XMLConfiguration( FITS_XML.resolve("fits.xml").toString() );
+      config = new XMLConfiguration(FITS_XML.resolve("fits.xml").toUri().toURL());
     } catch (ConfigurationException e) {
       logger.fatal( "Error reading " + FITS_XML + "fits.xml: " + e.getClass().getName() );
       throw new FitsConfigurationException( "Error reading " + FITS_XML + "fits.xml", e );
+    }
+    catch (MalformedURLException e)
+    {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
     }
     try {
       mapper = new FitsXmlMapper();
@@ -179,7 +187,7 @@ public class Fits {
 
   }
 
-  public static void main( String[] args ) throws FitsException, IOException, ParseException, XMLStreamException {    
+  public static void main( String[] args ) throws FitsException, IOException, ParseException, XMLStreamException, URISyntaxException {    
 
     Options options = new Options();
     options.addOption( "i", true, "input file or directory" );

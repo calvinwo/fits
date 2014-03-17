@@ -18,6 +18,8 @@
  */
 package edu.harvard.hul.ois.fits.tools.utils;
 
+import java.net.MalformedURLException;
+import java.nio.file.Path;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -30,14 +32,19 @@ import edu.harvard.hul.ois.fits.exceptions.FitsConfigurationException;
 
 public class XsltTransformMap {
 	
-	public static Hashtable<String,String> getMap(String config) throws FitsConfigurationException {
+	public static Hashtable<String,String> getMap(Path config) throws FitsConfigurationException {
 		Hashtable<String,String> mappings = new Hashtable<String,String>();
 		XMLConfiguration conf = null;
 		try {
-			conf = new XMLConfiguration(config);
+			conf = new XMLConfiguration(config.toUri().toURL());
 		} catch (ConfigurationException e) {
 			throw new FitsConfigurationException("Error reading "+config+"fits.xml",e);
 		}
+        catch (MalformedURLException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		
 		@SuppressWarnings("rawtypes")
 		List fields = conf.configurationsAt("map");

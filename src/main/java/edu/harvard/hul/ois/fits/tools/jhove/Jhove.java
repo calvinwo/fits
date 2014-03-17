@@ -20,15 +20,21 @@ package edu.harvard.hul.ois.fits.tools.jhove;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import org.jdom.Document;
 import org.apache.log4j.Logger;
+import org.jdom.Document;
+
+import com.ibm.wsdl.util.IOUtils;
 
 import edu.harvard.hul.ois.fits.Fits;
 import edu.harvard.hul.ois.fits.exceptions.FitsException;
@@ -51,40 +57,44 @@ public class Jhove extends ToolBase {
     private App jhoveApp;
     private JhoveBase jhove;
     private XmlHandler xh; 
-    private String jhoveConf;
     private boolean enabled = true;
     private static final Logger logger = Logger.getLogger(Jhove.class);
 
     public final static Calendar calendar = GregorianCalendar.getInstance();
     
-    public final static String jhoveFitsConfig = Fits.FITS_XML+"jhove"+File.separator;
+    public final static Path jhoveFitsConfig = Fits.FITS_XML.resolve("jhove");
 	
 	public Jhove() throws FitsException {
         logger.debug ("Initializing Jhove");
-
 		try {
             //Initialize Jhove
-            File config = new File(this.getClass().getClassLoader().getResource(Fits.FITS_XML+"jhove"+File.separator+"jhove.conf").getFile());
-            //= new File((this.getClass().getResource("jhove.conf")).toURI());
-            jhoveConf = config.getPath();
-            jhove = new JhoveBase ();
-            jhove.init (jhoveConf, "org.apache.xerces.parsers.SAXParser");
+            File config = Files.copy(jhoveFitsConfig.resolve("jhove.conf"),
+                    Paths.get("jhove.conf"),StandardCopyOption.REPLACE_EXISTING).toFile();
+            Files.copy(jhoveFitsConfig.resolve("jhove_common_to_fits.xslt"), Paths.get("jhove_common_to_fits.xslt"),StandardCopyOption.REPLACE_EXISTING);
+            jhove = new JhoveBase();
+            jhove.init (config.getPath(), "org.apache.xerces.parsers.SAXParser");
             jhove.setChecksumFlag(false);   
             jhove.setSignatureFlag(false);
             jhove.setShowRawFlag(false);
       	    xh = new XmlHandler();
       	    jhoveApp = new App ("Jhove","1.5", new int[] {2009, 12, 23}, "","");
             xh.setApp(jhoveApp);
-            xh.setBase(jhove);   		
+            xh.setBase(jhove);
 		}
+		catch (IOException e)
+        {
+		    logger.error ("Error getting Jhove config: " + e.getClass().getName());
+            throw new FitsToolException("Error getting Jhove config",e);
+        }
 		catch (JhoveException e) {
 		    logger.error ("Error initializing Jhove: " + e.getClass().getName());
 			throw new FitsToolException("Error initializing Jhove",e);
 		}
-
+		finally {
+		}
 		//initialize tool info
-		info = new ToolInfo(jhoveApp.getName(),jhoveApp.getRelease(),jhove.getDate().toString());		
-		transformMap = XsltTransformMap.getMap(jhoveFitsConfig+"jhove_xslt_map.xml");
+		info = new ToolInfo(jhoveApp.getName(),jhoveApp.getRelease(),jhove.getDate().toString());
+		transformMap = XsltTransformMap.getMap(jhoveFitsConfig.resolve("jhove_xslt_map.xml"));
 	}
 	
     /**
@@ -146,7 +156,6 @@ public class Jhove extends ToolBase {
 		}
 		String format = XmlUtils.getDomValue(dom,"format");
 		String xsltTransform = (String)transformMap.get(format.toUpperCase());
-
 		/* debug code
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 		try {
@@ -157,15 +166,13 @@ public class Jhove extends ToolBase {
 		}
 		System.out.println("-------------------------------------------------------------------------------------");
 		 */
-		
 		Document fitsXml = null;
 		if(xsltTransform != null) {
-			fitsXml = transform(jhoveFitsConfig+xsltTransform,dom);
+			fitsXml = transform(jhoveFitsConfig.resolve(xsltTransform),dom);
 		}
 		else {
-			fitsXml = transform(jhoveFitsConfig+"jhove_text_to_fits.xslt",dom);
+			fitsXml = transform(jhoveFitsConfig.resolve("jhove_text_to_fits.xslt"),dom);
 		}
-		
 		/*
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 		try {

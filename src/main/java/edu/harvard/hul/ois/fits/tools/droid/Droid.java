@@ -22,6 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.apache.log4j.Logger;
 import org.jdom.input.SAXBuilder;
@@ -52,7 +55,7 @@ public class Droid extends ToolBase {
 		    throw new FitsToolException ("DROID cannot run under Java 8");
 		}
 		try {
-			File sigFile = Fits.FITS_TOOLS.resolve("droid").resolve(Fits.config.getString("droid_sigfile")).toFile();
+			File sigFile = Files.copy(Fits.FITS_TOOLS.resolve("droid").resolve(Fits.config.getString("droid_sigfile")),Paths.get("").resolve("droidfile"),StandardCopyOption.REPLACE_EXISTING).toFile();
 	        try {
 	            droidQuery = new DroidQuery (sigFile);
 	        }

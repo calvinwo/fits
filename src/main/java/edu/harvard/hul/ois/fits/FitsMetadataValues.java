@@ -18,9 +18,13 @@
 package edu.harvard.hul.ois.fits;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import org.apache.log4j.Logger;
@@ -231,7 +235,8 @@ public class FitsMetadataValues {
     	HashMap<String,String> map = new HashMap<String,String>();
     	BufferedReader in = null;
 		try {
-			in = new BufferedReader(new FileReader(inputFile.toFile()));
+		    Charset charset = Charset.forName("US-ASCII");
+		    in = Files.newBufferedReader(inputFile, charset);
 			String line;
 			while ((line = in.readLine()) != null) {
 				if(!line.startsWith("#") && !line.startsWith("\"#") ) {

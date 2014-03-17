@@ -25,6 +25,7 @@ import org.custommonkey.xmlunit.XMLTestCase;
 import org.junit.Test;
 
 import edu.harvard.hul.ois.fits.Fits;
+import edu.harvard.hul.ois.fits.FitsOutput;
 import edu.harvard.hul.ois.fits.tools.Tool;
 
 
@@ -33,7 +34,7 @@ public class FitsBasicTest extends XMLTestCase {
     
 	@Test
 	public void testFits() throws Exception {	
-    	Fits fits = new Fits(Paths.get("target/classes/").toAbsolutePath().toString());
+    	Fits fits = new Fits(Paths.get("target/classes/").toAbsolutePath());
     	File jp2file = Paths.get(this.getClass().getResource("/testfiles/test.jp2").toURI()).toFile();
     	File wavfile = Paths.get(this.getClass().getResource("/testfiles/test.wav").toURI()).toFile();
     	File txtfile = Paths.get(this.getClass().getResource("/testfiles/utf16.txt").toURI()).toFile();
@@ -47,12 +48,12 @@ public class FitsBasicTest extends XMLTestCase {
     		}
     	}
     	
-    	fits.examine(jp2file);
-    	fits.examine(wavfile);
-    	fits.examine(txtfile);
+    	FitsOutput fitsOutput = fits.examine(jp2file);
+    	//fits.examine(wavfile);
+    	//fits.examine(txtfile);
     	
     	//fitsOut.
-    	//fitsOut.saveToDisk("fitsBasicTestOutput.xml");
+    	fitsOutput.saveToDisk("fitsBasicTestOutput.xml");
     	
 	}
 
